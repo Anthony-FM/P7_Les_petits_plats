@@ -1,0 +1,17 @@
+.container-search {
+    background-color: $color-search;
+}
+
+.search-input{
+    width: 100%;
+    background-color: $color-search;
+    border: none;
+    color: $color-black;
+    font-family: $texte;
+}
+.search-input:focus{
+    outline: none;
+}
+.search-input + i{
+    font-size: 1.5em;
+}

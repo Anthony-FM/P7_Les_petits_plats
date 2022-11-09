@@ -1,0 +1,23 @@
+{
+  "name": "p7_les_petits_plats",
+  "version": "1.0.0",
+  "description": "fichier package.json pour sass",
+  "main": "index.js",
+  "scripts": {
+    "sass": "sass --watch ./scss/main.scss:./css/style.css",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Anthony-FM/P7_Les_petits_plats.git"
+  },
+  "author": "Anthony Fouda Many",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Anthony-FM/P7_Les_petits_plats/issues"
+  },
+  "homepage": "https://github.com/Anthony-FM/P7_Les_petits_plats#readme",
+  "dependencies": {
+    "bootstrap": "^5.2.2"
+  }
+}

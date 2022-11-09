@@ -1,0 +1,12 @@
+.header-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 42px ;
+    padding-bottom:  17px ;
+}
+.header-body i {
+    color: $color-logo;
+    font-size: 50px;
+}

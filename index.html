@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="https://kit.fontawesome.com/d0ee6e80bb.js" crossorigin="anonymous"></script>
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
+    <title>Les petits plats</title>
+</head>
+<body>
+    <header class="header-body">
+        <img src="./assets/Vector.svg" alt="logo" >
+        <h1>Les petits plats</h1>
+    </header>
+
+    <main class="container">
+
+        <section class="recipes-search">
+            <div class="container-search col-12 rounded p-3 d-flex justify-content-between mb-4">
+                <input type="search" name="search-recipes" id="searchRecipes" placeholder="Recherche une recette"
+                 class="search-input">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+        </section>
+
+        <section class="recipes-tags">
+
+            <div class="container tags"></div>
+
+            <div class="d-flex flex-wrap flex-column flex-sm-column flex-md-row align-items-center align-items-md-start">
+
+                <div class="container-btn me-sm-0 me-md-2 mb-2">                
+                    <div class="select-btn primary">
+                        <h2 class="select-btn_title">Ingrédients</h2>
+                        <i class="fas fa-chevron-down select-btn_arrow"></i>
+                    </div>
+                    <div class="list-container">
+                        <div class="list-search primary">
+                            <input type="text" class="list-search_input primary" placeholder="Rechercher un ingrédient...">
+                            <i class="fas fa-chevron-down list-search_arrow"></i>
+                        </div>
+                        <div class="list-area"></div>
+                        
+                    </div>
+                </div>
+
+                <div class="container-btn me-sm-0 me-md-2 mb-2">                
+                    <div class="select-btn secondary ">
+                        <h2 class="select-btn_title">Appareils</h2>
+                        <i class="fas fa-chevron-down select-btn_arrow"></i>
+                    </div>
+                    <div class="list-container">
+                        <div class="list-search secondary">
+                            <input type="text" class="list-search_input secondary" placeholder="Rechercher un appareil...">
+                            <i class="fas fa-chevron-down list-search_arrow"></i>
+                        </div>
+                        <div class="list-area"></div>
+                    </div>
+                </div>
+
+                <div class="container-btn mb-2 ">                
+                    <div class="select-btn tertiary ">
+                        <h2 class="select-btn_title">Ustensiles</h2>
+                        <i class="fas fa-chevron-down select-btn_arrow"></i>
+                    </div>
+                    <div class="list-container">
+                        <div class="list-search tertiary">
+                            <input type="text" class="list-search_input tertiary" placeholder="Rechercher un ustensile...">
+                            <i class="fas fa-chevron-down list-search_arrow"></i>
+                        </div>
+                        <div class="list-area"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="recipes-galery d-flex flex-row flex-wrap mt-5"></section>
+
+    </main>
+       <!-- Bootstrap JS bundle → -->
+
+       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" 
+       integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" 
+       crossorigin="anonymous"></script>
+
+        <!-- Script Javascript -->
+
+        <script src="./script/page/index.js"></script>
+        <script src="./script/factories/recipesFactory.js"></script>
+        <script src="./script/utils/ingredientSort.js"></script>
+</body>
+</html>
