@@ -23,13 +23,14 @@
 
     <main class="container">
 
-        <section class="recipes-search">
+        <div class="recipes-search">
             <div class="container-search col-12 rounded p-3 d-flex justify-content-between mb-4">
                 <input type="search" name="search-recipes" id="searchRecipes" placeholder="Recherche une recette"
                  class="search-input">
                 <i class="fa-solid fa-magnifying-glass"></i>
             </div>
-        </section>
+            <div class="recipes-search-list"></div>
+        </div>
 
         <section class="recipes-tags">
 
@@ -37,53 +38,53 @@
 
             <div class="d-flex flex-wrap flex-column flex-sm-column flex-md-row align-items-center align-items-md-start">
 
-                <div class="container-btn me-sm-0 me-md-2 mb-2">                
+                <div class="container-btn me-sm-0 me-md-2 mb-2 select-container">                
                     <div class="select-btn primary">
                         <h2 class="select-btn_title">Ingrédients</h2>
                         <i class="fas fa-chevron-down select-btn_arrow"></i>
                     </div>
-                    <div class="list-container">
-                        <div class="list-search primary">
-                            <input type="text" class="list-search_input primary" placeholder="Rechercher un ingrédient...">
+                    <div class="list-container primary">
+                        <div class="list-search primary ">
+                            <input type="text" class="list-search_input primary-hover" placeholder="Rechercher un ingrédient...">
                             <i class="fas fa-chevron-down list-search_arrow"></i>
                         </div>
-                        <div class="list-area"></div>
+                        <div class="list-area primary"></div>
                         
                     </div>
                 </div>
 
-                <div class="container-btn me-sm-0 me-md-2 mb-2">                
+                <div class="container-btn me-sm-0 me-md-2 mb-2 select-container">                
                     <div class="select-btn secondary ">
                         <h2 class="select-btn_title">Appareils</h2>
                         <i class="fas fa-chevron-down select-btn_arrow"></i>
                     </div>
-                    <div class="list-container">
+                    <div class="list-container secondary">
                         <div class="list-search secondary">
-                            <input type="text" class="list-search_input secondary" placeholder="Rechercher un appareil...">
+                            <input type="text" class="list-search_input secondary-hover" placeholder="Rechercher un appareil...">
                             <i class="fas fa-chevron-down list-search_arrow"></i>
                         </div>
-                        <div class="list-area"></div>
+                        <div class="list-area secondary"></div>
                     </div>
                 </div>
 
-                <div class="container-btn mb-2 ">                
+                <div class="container-btn mb-2 select-container">                
                     <div class="select-btn tertiary ">
                         <h2 class="select-btn_title">Ustensiles</h2>
                         <i class="fas fa-chevron-down select-btn_arrow"></i>
                     </div>
-                    <div class="list-container">
+                    <div class="list-container tertiary">
                         <div class="list-search tertiary">
-                            <input type="text" class="list-search_input tertiary" placeholder="Rechercher un ustensile...">
+                            <input type="text" class="list-search_input tertiary-hover" placeholder="Rechercher un ustensile...">
                             <i class="fas fa-chevron-down list-search_arrow"></i>
                         </div>
-                        <div class="list-area"></div>
+                        <div class="list-area tertiary"></div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="recipes-galery d-flex flex-row flex-wrap mt-5"></section>
-
+        <div class="recipes-galery container mt-5 row g-3"></div>
+        
     </main>
        <!-- Bootstrap JS bundle → -->
 
@@ -92,9 +93,11 @@
        crossorigin="anonymous"></script>
 
         <!-- Script Javascript -->
-
-        <script src="./script/page/index.js"></script>
         <script src="./script/factories/recipesFactory.js"></script>
-        <script src="./script/utils/ingredientSort.js"></script>
+        <script type="module" src="./data/recipesData.js"></script>
+        <script type="module" src="./script/page/index.js"></script>
+        <script type="module" src="./script/utils/searchInput.js"></script>
+        <script type="module" src="./script/utils/ingredientSort.js"></script>
+        <script type="module" src="./script/utils/algorithmes.js"></script>
 </body>
 </html>
