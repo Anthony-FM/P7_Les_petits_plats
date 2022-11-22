@@ -10,3 +10,32 @@
     color: $color-logo;
     font-size: 50px;
 }
+.recipes-search {
+    position: relative;
+}
+.recipes-search-list{
+    position: absolute;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    background-color: $color-white;
+    top: 57px;
+    border: 1px lighten($color-background-picture, 10%) solid;
+    padding: 10px;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    border-radius: 10px;
+    display: none;
+    &_item{
+        font-family: $texte;
+        font-size: 18px;
+        color: $color-background-picture;
+        line-height: normal;
+        margin-bottom: 5px;
+        cursor: pointer;
+        &:hover{
+            color: darken($color:$color-background-picture, $amount: 10%);
+        }
+    }
+}
