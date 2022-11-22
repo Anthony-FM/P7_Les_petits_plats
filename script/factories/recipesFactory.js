@@ -1,10 +1,10 @@
 function recipesFactory(data){
-    const { id, name, servings, ingredients, time, description, appliance, ustensils } = data;
+    const { id, name, servings, ingredients, ingredient, time, description, appliance, ustensils, value } = data;
 
     function getRecipesCard(){
         const card = document.createElement( "div" );
         card.className = "card";
-        card.classList = "col-12 col-md-6 col-lg-4 mb-4 pe-4  recipes-card"
+        card.classList = "col-12 col-md-6 col-lg-4 mb-3 recipes-card"
 
         const bgDiv = document.createElement( "div" );
         bgDiv.className = "recipes-card_bg";
@@ -42,7 +42,7 @@ function recipesFactory(data){
             name.classList= "ingredient-container_title"
             let p = document.createElement( "p" );
             p.className= "ingredient-container_text"
-            name.innerHTML =  ingredients[i].ingredient + "<span class='fw'>" + (ingredients[i].quantity ? ": " + ingredients[i].quantity : "") + (ingredients[i].unit ? ingredients[i].unit : "") + "</span>";
+            name.innerHTML =  ingredients[i].ingredient + "<span class='fw'>" + (ingredients[i].quantity ? ": " + ingredients[i].quantity +" " : "") + (ingredients[i].unit ? ingredients[i].unit : "") + "</span>";
             
             divContainer.appendChild(name);
             ingredientsdiv.appendChild(divContainer);
@@ -60,7 +60,7 @@ function recipesFactory(data){
         mainBody.appendChild(descriptiondiv)
 
         return card;
-
     }
-    return {id, name, servings, ingredients, time, description, appliance, ustensils, getRecipesCard}
+
+    return {id, name, servings, ingredients, ingredient, time, description, appliance, ustensils, getRecipesCard}
 }
