@@ -1,5 +1,5 @@
 function recipesFactory(data){
-    const { id, name, servings, ingredients, ingredient, time, description, appliance, ustensils, value } = data;
+    const { id, name, servings, ingredients, ingredient, time, description, appliance, ustensils } = data;
 
     function getRecipesCard(){
         const card = document.createElement( "div" );
