@@ -11110,4 +11110,29 @@ h1, .h1 {
   overflow: hidden;
 }
 
+.container-tags {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: start;
+}
+
+.tags-container {
+  display: flex;
+  margin: 0px 5px 5px 0;
+  padding: 1%;
+  align-items: center;
+  display: none;
+}
+.tags-container_text {
+  font-family: "Lato", sans-serif;
+  font-weight: 700;
+  margin-right: 10px;
+}
+.tags-container_cross {
+  cursor: pointer;
+  color: white;
+  text-decoration: none;
+}
+
 /*# sourceMappingURL=style.css.map */
