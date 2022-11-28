@@ -20,5 +20,8 @@
         cursor: pointer;
         color: white;
         text-decoration: none;
+        &_hover{
+            color: darken($color: $color-white, $amount: 50) !important;
+        }
     }
 }

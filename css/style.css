@@ -10771,6 +10771,9 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
+/*Couleurs*/
+/*Font-familly*/
+/*Weigth*/
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
@@ -10827,9 +10830,10 @@ table {
   border-spacing: 0;
 }
 
-/*Couleurs*/
-/*Font-familly*/
-/*Weigth*/
+a:hover {
+  color: gray;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -11133,6 +11137,9 @@ h1, .h1 {
   cursor: pointer;
   color: white;
   text-decoration: none;
+}
+.tags-container_cross_hover {
+  color: gray !important;
 }
 
 /*# sourceMappingURL=style.css.map */
