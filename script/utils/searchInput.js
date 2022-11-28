@@ -1,6 +1,6 @@
 import { recipes } from '/data/recipesData.js';
-import { displayRecipesCard, displayIngredientsList, displayAppliancesList, displayUstensilsList } from '/script/page/index.js';
-import { getArrayByTitle, getArrayByIngredients, getArrayByDescription, getArrayByAppliance, getArrayByUstensils } from '/script/utils/algorithmes.js';
+import { displayRecipesCard, displayIngredientsList, displayAppliancesList, displayUstensilsList } from '../page/index.js';
+import { getArrayByTitle, getArrayByIngredients, getArrayByDescription, getArrayByAppliance, getArrayByUstensils } from '../utils/algorithmes.js';
 
 function searchRecipes(){
     const searchInput = document.getElementById("searchRecipes");
@@ -122,7 +122,9 @@ function searchIngredientInput(){
 }
 function searchApplianceInput(){
     const applianceInput = document.querySelector(".list-search_input.secondary-hover");
+    let ingredientListArea = document.querySelector(".list-search.primary + .list-area");
     let applianceListArea = document.querySelector(".list-search.secondary + .list-area");
+    let ustensilsListArea = document.querySelector(".list-search.tertiary + .list-area");
 
     applianceInput.addEventListener("input", (e) => {
         let value = e.target.value
@@ -145,11 +147,17 @@ function searchApplianceInput(){
     
             applianceListArea.innerHTML = "";
             displayAppliancesList(newRecipesArray);
+            ingredientListArea.innerHTML = "" ;
+            displayIngredientsList(newRecipesArray);
+            ustensilsListArea.innerHTML = "";
+            displayUstensilsList(newRecipesArray);
         }
     })
 }
 function searchUstensilsInput(){
     const ustensilsInput = document.querySelector(".list-search_input.tertiary-hover");
+    let ingredientListArea = document.querySelector(".list-search.primary + .list-area");
+    let applianceListArea = document.querySelector(".list-search.secondary + .list-area");
     let ustensilsListArea = document.querySelector(".list-search.tertiary + .list-area");
 
     ustensilsInput.addEventListener("input", (e) => {
@@ -172,6 +180,10 @@ function searchUstensilsInput(){
     
             ustensilsListArea.innerHTML = "";
             displayUstensilsList(newRecipesArray);
+            applianceListArea.innerHTML = "";
+            displayAppliancesList(newRecipesArray);
+            ingredientListArea.innerHTML = "" ;
+            displayIngredientsList(newRecipesArray);
         }
     })
 }
