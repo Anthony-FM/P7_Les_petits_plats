@@ -1,4 +1,4 @@
-import { recipes } from '/data/recipesData.js';
+import { recipes } from '../data/recipesData.js';
 
 export function displayRecipesCard(data){    
     const recipesSection = document.querySelector(".recipes-galery");

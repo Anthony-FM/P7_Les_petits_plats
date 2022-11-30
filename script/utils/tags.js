@@ -1,4 +1,4 @@
-import { recipes } from '/data/recipesData.js';
+import { recipes } from '../data/recipesData.js';
 import { getArrayIngredientsList, getArrayApplianceList, getArrayUstensilList } from '../page/index.js';
 import { displayRecipesCard, displayIngredientsList, displayAppliancesList, displayUstensilsList } from '../page/index.js';
 import { getArrayByTitle, getArrayByIngredients, getArrayByDescription, getArrayByAppliance, getArrayByUstensils } from '../utils/algorithmes.js';
