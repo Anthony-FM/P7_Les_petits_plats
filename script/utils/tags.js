@@ -133,7 +133,7 @@ function displayRecipesByIdWithRecipeData(id){
     displayUstensilsList(newArray);
     
     displayrecipesByTags();
-    console.log("funnelArray: ",funnelArray,"tagsArray: ", tagsArray);
+    console.log("funnelArray: ",funnelArray);
     
 }
 
@@ -144,16 +144,16 @@ function displayRecipesByIdWithRestData(id){
     console.log("funnelArray: ",funnelArray);
     funnelArray = newRecipesArray;
     console.log("funnelArray", funnelArray)
-    let newtagsArray = funnelArray.filter((ele, pos) => funnelArray.indexOf(ele) == pos);    
-    console.log("new array container: ",newtagsArray);
+    let newTagsData = funnelArray.filter((ele, pos) => funnelArray.indexOf(ele) == pos);    
+    console.log("new array container: ",newTagsData);
     recipesSection.innerHTML = "";            
-    displayRecipesCard(newtagsArray);
+    displayRecipesCard(newTagsData);
     ingredientListArea.innerHTML = "";
-    displayIngredientsList(newtagsArray);
+    displayIngredientsList(newTagsData);
     appliancesListArea.innerHTML = "";
-    displayAppliancesList(newtagsArray);
+    displayAppliancesList(newTagsData);
     ustensilsListArea.innerHTML = "";
-    displayUstensilsList(newtagsArray);
+    displayUstensilsList(newTagsData);
 
     displayrecipesByTags();
     console.log("funnelArray: ", funnelArray)
