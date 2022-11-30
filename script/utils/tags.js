@@ -173,11 +173,15 @@ function displayrecipesByTags(){
                 console.log(tagsArray.length)
                 displayRecipesByIdWithRecipeData(id);               
                 tagsArray.push(id);
+                let newTagsArray = tagsArray.filter((ele, pos) => tagsArray.indexOf(ele) == pos);
+                tagsArray = newTagsArray;
                 console.log(tagsArray)
             } else if(tagsArray.length > 0){
                 console.log(tagsArray.length)
                 displayRecipesByIdWithRestData(id);
                 tagsArray.push(id);
+                let newTagsArray = tagsArray.filter((ele, pos) => tagsArray.indexOf(ele) == pos);
+                tagsArray = newTagsArray;
                 console.log(tagsArray)
             }
         })
