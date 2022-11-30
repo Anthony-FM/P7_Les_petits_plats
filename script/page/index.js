@@ -74,8 +74,8 @@ export function displayUstensilsList(data){
 }
 
 export function getAllList(data){    
-    let arrayOfAllItems = [getArrayIngredientsList(data).concat(getArrayApplianceList(data)).concat(getArrayUstensilList(data))];
-    console.log(arrayOfAllItems) 
+    let arrayOfAllItems = [getArrayIngredientsList(data)
+        .concat(getArrayApplianceList(data)).concat(getArrayUstensilList(data))];
     return arrayOfAllItems;
 }
 
