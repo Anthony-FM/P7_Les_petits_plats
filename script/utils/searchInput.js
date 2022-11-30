@@ -17,15 +17,15 @@ function searchRecipes(){
             let valueUpperCase = e.target.value[0].toUpperCase()+e.target.value.slice(1);
             let valueLowerCase = e.target.value[0].toLowerCase()+e.target.value.slice(1);
     
-            let newRecipesArrayByName = getArrayByTitle(value);
-            let newRecipesArrayByNameUpperCase = getArrayByTitle(valueUpperCase);
-            let newRecipesArrayByNameLowerCase = getArrayByTitle(valueLowerCase);
-            let newRecipesArrayByIngredient = getArrayByIngredients(value); 
-            let newRecipesArrayByIngredientUpperCase = getArrayByIngredients(valueUpperCase); 
-            let newRecipesArrayByIngredientLowerCase = getArrayByIngredients(valueLowerCase); 
-            let newRecipesArrayByDescription = getArrayByDescription(value);
-            let newRecipesArrayByDescriptionUpperCase = getArrayByDescription(valueUpperCase);
-            let newRecipesArrayByDescriptionLowerCase = getArrayByDescription(valueLowerCase);
+            let newRecipesArrayByName = getArrayByTitle(value, recipes);
+            let newRecipesArrayByNameUpperCase = getArrayByTitle(valueUpperCase, recipes);
+            let newRecipesArrayByNameLowerCase = getArrayByTitle(valueLowerCase, recipes);
+            let newRecipesArrayByIngredient = getArrayByIngredients(value, recipes); 
+            let newRecipesArrayByIngredientUpperCase = getArrayByIngredients(valueUpperCase, recipes); 
+            let newRecipesArrayByIngredientLowerCase = getArrayByIngredients(valueLowerCase, recipes); 
+            let newRecipesArrayByDescription = getArrayByDescription(value, recipes);
+            let newRecipesArrayByDescriptionUpperCase = getArrayByDescription(valueUpperCase, recipes);
+            let newRecipesArrayByDescriptionLowerCase = getArrayByDescription(valueLowerCase, recipes);
                 
             // Concaténation des tableaux
             let newRecipesOfAllArray = [...newRecipesArrayByName,...newRecipesArrayByIngredient,...newRecipesArrayByDescription,
@@ -103,9 +103,9 @@ function searchIngredientInput(){
             let valueUpperCase = e.target.value[0].toUpperCase() + e.target.value.slice(1);
             let valueLowerCase = e.target.value[0].toLowerCase()+e.target.value.slice(1);
     
-            let newRecipesArrayByIngredient = getArrayByIngredients(value); 
-            let newRecipesArrayByIngredientUpperCase = getArrayByIngredients(valueUpperCase); 
-            let newRecipesArrayByIngredientLowerCase = getArrayByIngredients(valueLowerCase);
+            let newRecipesArrayByIngredient = getArrayByIngredients(value, recipes); 
+            let newRecipesArrayByIngredientUpperCase = getArrayByIngredients(valueUpperCase, recipes); 
+            let newRecipesArrayByIngredientLowerCase = getArrayByIngredients(valueLowerCase, recipes);
             
             let newRecipesOfAllArray = [...newRecipesArrayByIngredient,...newRecipesArrayByIngredientLowerCase,...newRecipesArrayByIngredientUpperCase]
             let newRecipesArray = newRecipesOfAllArray.filter((ele, pos) => newRecipesOfAllArray.indexOf(ele) == pos);
@@ -137,9 +137,9 @@ function searchApplianceInput(){
             let valueUpperCase = e.target.value[0].toUpperCase() + e.target.value.slice(1);
             let valueLowerCase = e.target.value[0].toLowerCase()+e.target.value.slice(1);
     
-            let newRecipesArrayByAppliances = getArrayByAppliance(value); 
-            let newRecipesArrayByAppliancesUpperCase = getArrayByAppliance(valueUpperCase); 
-            let newRecipesArrayByAppliancesLowerCase = getArrayByAppliance(valueLowerCase);
+            let newRecipesArrayByAppliances = getArrayByAppliance(value, recipes); 
+            let newRecipesArrayByAppliancesUpperCase = getArrayByAppliance(valueUpperCase, recipes); 
+            let newRecipesArrayByAppliancesLowerCase = getArrayByAppliance(valueLowerCase, recipes);
             
             let newRecipesOfAllArray = [...newRecipesArrayByAppliances,...newRecipesArrayByAppliancesLowerCase,
                 ...newRecipesArrayByAppliancesUpperCase];
@@ -171,9 +171,9 @@ function searchUstensilsInput(){
             let valueUpperCase = e.target.value[0].toUpperCase() + e.target.value.slice(1);
             let valueLowerCase = e.target.value[0].toLowerCase()+e.target.value.slice(1);
     
-            let newRecipesArrayByUstensils = getArrayByUstensils(value); 
-            let newRecipesArrayByUstensilsUpperCase = getArrayByUstensils(valueUpperCase); 
-            let newRecipesArrayByUstensilsLowerCase = getArrayByUstensils(valueLowerCase);
+            let newRecipesArrayByUstensils = getArrayByUstensils(value, recipes); 
+            let newRecipesArrayByUstensilsUpperCase = getArrayByUstensils(valueUpperCase, recipes); 
+            let newRecipesArrayByUstensilsLowerCase = getArrayByUstensils(valueLowerCase, recipes);
             
             let newRecipesOfAllArray = [...newRecipesArrayByUstensils,...newRecipesArrayByUstensilsLowerCase,...newRecipesArrayByUstensilsUpperCase]
             let newRecipesArray = newRecipesOfAllArray.filter((ele, pos) => newRecipesOfAllArray.indexOf(ele) == pos);
