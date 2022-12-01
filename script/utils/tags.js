@@ -14,9 +14,8 @@ let ustensilsListArea = document.querySelector(".list-search.tertiary + .list-ar
 let tagsArray = [];
 let funnelArray = [];
 
-
+// Les zones des Recettes et des Tags
 const tagsArea = document.querySelector(".container-tags");
-
 const recipesSection = document.querySelector(".recipes-galery");
 
 // ***** Création des Tags *****
@@ -133,7 +132,6 @@ function displayRecipesByIdWithRecipeData(id){
     displayUstensilsList(newArray);
     
     displayrecipesByTags();
-    console.log("funnelArray: ",funnelArray);
     
 }
 
@@ -141,11 +139,9 @@ function displayRecipesByIdWithRecipeData(id){
 //  par rapport à un mot clés préalablement séléctionné
 function displayRecipesByIdWithRestData(id){    
     let newRecipesArray = getArray(id, funnelArray);
-    console.log("funnelArray: ",funnelArray);
     funnelArray = newRecipesArray;
-    console.log("funnelArray", funnelArray)
-    let newTagsData = funnelArray.filter((ele, pos) => funnelArray.indexOf(ele) == pos);    
-    console.log("new array container: ",newTagsData);
+    let newTagsData = funnelArray.filter((ele, pos) => funnelArray.indexOf(ele) == pos);  
+
     recipesSection.innerHTML = "";            
     displayRecipesCard(newTagsData);
     ingredientListArea.innerHTML = "";
@@ -156,31 +152,38 @@ function displayRecipesByIdWithRestData(id){
     displayUstensilsList(newTagsData);
 
     displayrecipesByTags();
-    console.log("funnelArray: ", funnelArray)
     
 }
 
-
-function displayrecipesByTags(){      
+// Fonction qui écoute tous les mot-clés de chaque liste
+// applique une fonction selon si le tableau tagsArray possède une valeur ou non
+// puis affiche le tags selectionné 
+export function displayrecipesByTags(){      
     let allItemsInListArea = document.querySelectorAll(".list-area_items"); 
+
     allItemsInListArea.forEach(element => {
+
         element.addEventListener("click", () => {
+
             let id = element.textContent;
             let tagById = document.getElementById(id);
             tagById.style.display = "flex"; 
             console.log(tagsArray.length)
+
             if(tagsArray.length === 0){
+
                 console.log(tagsArray.length)
                 displayRecipesByIdWithRecipeData(id);               
                 tagsArray.push(id);
-                let newTagsArray = tagsArray.filter((ele, pos) => tagsArray.indexOf(ele) == pos);
+                let newTagsArray = [...new Set(tagsArray)];
                 tagsArray = newTagsArray;
                 console.log(tagsArray)
+
             } else if(tagsArray.length > 0){
                 console.log(tagsArray.length)
                 displayRecipesByIdWithRestData(id);
                 tagsArray.push(id);
-                let newTagsArray = tagsArray.filter((ele, pos) => tagsArray.indexOf(ele) == pos);
+                let newTagsArray = [...new Set(tagsArray)];
                 tagsArray = newTagsArray;
                 console.log(tagsArray)
             }
@@ -207,7 +210,6 @@ function closeTags(){
             tagsArray.forEach(element => {
                 newArrayOfTagsData = getArray(element, recipes)
             })
-            console.log(newArrayOfTagsData, tagsArray.length)
             
             element.parentElement.style.display = "none";
 
@@ -221,8 +223,7 @@ function closeTags(){
                 displayAppliancesList(recipes);
                 ustensilsListArea.innerHTML = "";
                 displayUstensilsList(recipes);    
-                displayrecipesByTags();   
-                console.log(tagsArray)
+                displayrecipesByTags();  
                 
             }else if(tagsArray.length > 0){
 
@@ -234,8 +235,7 @@ function closeTags(){
                 displayAppliancesList(newArrayOfTagsData);
                 ustensilsListArea.innerHTML = "";
                 displayUstensilsList(newArrayOfTagsData);    
-                displayrecipesByTags();   
-                console.log(newArrayOfTagsData)
+                displayrecipesByTags();
                 
             }
         })

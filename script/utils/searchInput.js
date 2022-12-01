@@ -1,6 +1,7 @@
 import { recipes } from '../../data/recipesData.js';
 import { displayRecipesCard, displayIngredientsList, displayAppliancesList, displayUstensilsList } from '../page/index.js';
 import { getArrayByTitle, getArrayByIngredients, getArrayByDescription, getArrayByAppliance, getArrayByUstensils } from '../utils/algorithmes.js';
+import { displayrecipesByTags } from '../utils/tags.js';
 
 function searchRecipes(){
     const searchInput = document.getElementById("searchRecipes");
@@ -33,9 +34,9 @@ function searchRecipes(){
             ...newRecipesArrayByNameLowerCase,...newRecipesArrayByIngredientLowerCase,...newRecipesArrayByDescriptionLowerCase];
     
             // On tri les tableaux pour qu'il n'y ai pas de doublon
-            let newRecipesArray = newRecipesOfAllArray.filter((ele, pos) => newRecipesOfAllArray.indexOf(ele) == pos);
+            let newRecipesArray = [...new Set(newRecipesOfAllArray)];
             
-            if(value.length > 3 && newRecipesArray.length == 0){
+            if(value.length > 2 && newRecipesArray.length == 0){
                            
                 recipesSection.innerHTML = "";            
                 recipesSection.innerHTML = `<div class="no-recipes">  « Aucune recette ne correspond à votre critère… vous pouvez
@@ -47,9 +48,9 @@ function searchRecipes(){
                 displayAppliancesList(newRecipesArray);
                 ustensilsListArea.innerHTML = "";
                 displayUstensilsList(newRecipesArray);
+                displayrecipesByTags();
                 
-            } else if(value.length > 3 && newRecipesArray.length > 0) {
-                console.log(newRecipesArray.length);
+            } else if(value.length > 2 && newRecipesArray.length > 0) {
                 recipesSection.innerHTML = "";            
                 displayRecipesCard(newRecipesArray);
                 ingredientListArea.innerHTML = "";
@@ -58,8 +59,9 @@ function searchRecipes(){
                 displayAppliancesList(newRecipesArray);
                 ustensilsListArea.innerHTML = "";
                 displayUstensilsList(newRecipesArray);
+                displayrecipesByTags();
     
-            } else if(value.length > 2){
+            } else if(value.length < 3){
                 recipesSection.innerHTML = "";            
                 displayRecipesCard(recipes);
                 ingredientListArea.innerHTML = "";
@@ -68,6 +70,7 @@ function searchRecipes(){
                 displayAppliancesList(recipes);
                 ustensilsListArea.innerHTML = "";
                 displayUstensilsList(recipes);
+                displayrecipesByTags();
     
             }        
         } else if(value.length == 0){
@@ -79,6 +82,7 @@ function searchRecipes(){
             displayAppliancesList(recipes);
             ustensilsListArea.innerHTML = "";
             displayUstensilsList(recipes);
+            displayrecipesByTags();
         }
         
     });
@@ -98,6 +102,7 @@ function searchIngredientInput(){
         if(value.length == 0){
             ingredientListArea.innerHTML = "";
             displayIngredientsList(recipes);
+            displayrecipesByTags();
 
         } else if(value.length > 0){
             let valueUpperCase = e.target.value[0].toUpperCase() + e.target.value.slice(1);
@@ -107,8 +112,10 @@ function searchIngredientInput(){
             let newRecipesArrayByIngredientUpperCase = getArrayByIngredients(valueUpperCase, recipes); 
             let newRecipesArrayByIngredientLowerCase = getArrayByIngredients(valueLowerCase, recipes);
             
-            let newRecipesOfAllArray = [...newRecipesArrayByIngredient,...newRecipesArrayByIngredientLowerCase,...newRecipesArrayByIngredientUpperCase]
-            let newRecipesArray = newRecipesOfAllArray.filter((ele, pos) => newRecipesOfAllArray.indexOf(ele) == pos);
+            // Concaténation des tableaux
+            let newRecipesOfAllArray = [...newRecipesArrayByIngredient,...newRecipesArrayByIngredientLowerCase,...newRecipesArrayByIngredientUpperCase];
+            // On tri les tableaux pour qu'il n'y ai pas de doublon
+            let newRecipesArray = [...new Set(newRecipesOfAllArray)];
 
             ingredientListArea.innerHTML = "" ;
             displayIngredientsList(newRecipesArray);
@@ -116,6 +123,7 @@ function searchIngredientInput(){
             displayUstensilsList(newRecipesArray);
             applianceListArea.innerHTML = "";
             displayAppliancesList(newRecipesArray);
+            displayrecipesByTags();
         }
         
     })
@@ -131,6 +139,7 @@ function searchApplianceInput(){
         if(value.length == 0){
             applianceListArea.innerHTML = "";
             displayAppliancesList(recipes);
+            displayrecipesByTags();
 
         } else if(value.length > 0){
             
@@ -141,9 +150,11 @@ function searchApplianceInput(){
             let newRecipesArrayByAppliancesUpperCase = getArrayByAppliance(valueUpperCase, recipes); 
             let newRecipesArrayByAppliancesLowerCase = getArrayByAppliance(valueLowerCase, recipes);
             
+            // Concaténation des tableaux
             let newRecipesOfAllArray = [...newRecipesArrayByAppliances,...newRecipesArrayByAppliancesLowerCase,
                 ...newRecipesArrayByAppliancesUpperCase];
-            let newRecipesArray = newRecipesOfAllArray.filter((ele, pos) => newRecipesOfAllArray.indexOf(ele) == pos);
+            // On tri les tableaux pour qu'il n'y ai pas de doublon
+            let newRecipesArray = [...new Set(newRecipesOfAllArray)];
     
             applianceListArea.innerHTML = "";
             displayAppliancesList(newRecipesArray);
@@ -151,6 +162,7 @@ function searchApplianceInput(){
             displayIngredientsList(newRecipesArray);
             ustensilsListArea.innerHTML = "";
             displayUstensilsList(newRecipesArray);
+            displayrecipesByTags();
         }
     })
 }
@@ -166,6 +178,7 @@ function searchUstensilsInput(){
         if(value.length == 0){
             ustensilsListArea.innerHTML = "";
             displayUstensilsList(recipes);
+            displayrecipesByTags();
         } else if(value.length > 0){
 
             let valueUpperCase = e.target.value[0].toUpperCase() + e.target.value.slice(1);
@@ -175,8 +188,11 @@ function searchUstensilsInput(){
             let newRecipesArrayByUstensilsUpperCase = getArrayByUstensils(valueUpperCase, recipes); 
             let newRecipesArrayByUstensilsLowerCase = getArrayByUstensils(valueLowerCase, recipes);
             
-            let newRecipesOfAllArray = [...newRecipesArrayByUstensils,...newRecipesArrayByUstensilsLowerCase,...newRecipesArrayByUstensilsUpperCase]
-            let newRecipesArray = newRecipesOfAllArray.filter((ele, pos) => newRecipesOfAllArray.indexOf(ele) == pos);
+            // Concaténation des tableaux
+            let newRecipesOfAllArray = [...newRecipesArrayByUstensils,...newRecipesArrayByUstensilsLowerCase,
+                ...newRecipesArrayByUstensilsUpperCase];
+            // On tri les tableaux pour qu'il n'y ai pas de doublon            
+            let newRecipesArray = [...new Set(newRecipesOfAllArray)];
     
             ustensilsListArea.innerHTML = "";
             displayUstensilsList(newRecipesArray);
@@ -184,6 +200,7 @@ function searchUstensilsInput(){
             displayAppliancesList(newRecipesArray);
             ingredientListArea.innerHTML = "" ;
             displayIngredientsList(newRecipesArray);
+            displayrecipesByTags();
         }
     })
 }

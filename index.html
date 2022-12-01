@@ -23,6 +23,7 @@
 
     <main class="container">
 
+        <!-- Zone de recherche -->
         <div class="recipes-search">
             <div class="container-search col-12 rounded p-3 d-flex justify-content-between mb-4">
                 <input type="search" name="search-recipes" id="searchRecipes" placeholder="Recherche une recette"
@@ -33,7 +34,8 @@
         </div>
 
         <section class="recipes-tags">
-
+            
+            <!-- Conteneur de tous les tags -->
             <div class="container-tags"></div>
 
             <div class="d-flex flex-wrap flex-column flex-sm-column flex-md-row align-items-center align-items-md-start">
@@ -48,6 +50,7 @@
                             <input type="text" class="list-search_input primary-hover" placeholder="Rechercher un ingrédient...">
                             <i class="fas fa-chevron-down list-search_arrow"></i>
                         </div>
+                        <!-- Conteneur de la liste des ingrédients -->
                         <div class="list-area primary"></div>
                         
                     </div>
@@ -63,6 +66,7 @@
                             <input type="text" class="list-search_input secondary-hover" placeholder="Rechercher un appareil...">
                             <i class="fas fa-chevron-down list-search_arrow"></i>
                         </div>
+                         <!-- Conteneur de la liste des appareils -->
                         <div class="list-area secondary"></div>
                     </div>
                 </div>
@@ -77,12 +81,14 @@
                             <input type="text" class="list-search_input tertiary-hover" placeholder="Rechercher un ustensile...">
                             <i class="fas fa-chevron-down list-search_arrow"></i>
                         </div>
+                         <!-- Conteneur de la liste des ustensiles -->
                         <div class="list-area tertiary"></div>
                     </div>
                 </div>
             </div>
         </section>
 
+        <!-- Conteneur des cartes des recettes -->
         <div class="recipes-galery container mt-5 row g-3"></div>
         
     </main>
@@ -93,7 +99,7 @@
        crossorigin="anonymous"></script>
 
         <!-- Script Javascript -->
-        <script type="module" src="./data/recipesData.js"></script>
+        
         <script type="module" src="./script/page/index.js"></script>
         <script type="module" src="./script/utils/searchInput.js"></script>
         <script type="module" src="./script/utils/ingredientSort.js"></script>
