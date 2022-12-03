@@ -191,6 +191,14 @@ export function displayrecipesByTags(){
     })
 }
 
+function deleteWordInTagsArray(word){
+    let indexOfId = tagsArray.indexOf(word);
+    if(indexOfId > -1){
+        // Suppression du mot-clé grâce à son index et splice()
+        tagsArray.splice(indexOfId, 1);
+    }
+}
+
 // *** Création de la fonction qui fermera les tags ***
 
 function closeTags(){
@@ -199,12 +207,10 @@ function closeTags(){
         
         element.addEventListener("click", () => {
 
+            // Récupération de l'id de l'élement parent 
             let id = element.parentElement.id;
-
-            let indexOfId = tagsArray.indexOf(id);
-            if(indexOfId > -1){
-                tagsArray.splice(indexOfId, 1);
-            }
+            // Recherche de l'id dans le tableau tagsArray
+            deleteWordInTagsArray(id);            
 
             let newArrayOfTagsData = [];
             tagsArray.forEach(element => {
