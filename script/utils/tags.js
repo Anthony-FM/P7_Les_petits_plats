@@ -99,18 +99,28 @@ displayDataIngredientsTags();
 displayDataApliancesTags();
 displayDataUstensilsTags();
 
+// Fonction qui efface et regénère les cartes recette 
+// et les listes (ingrédients, appareiles et ustensiles)
+function getAllDisplayRecipes(recipesArray){
+    recipesSection.innerHTML = "";            
+    displayRecipesCard(recipesArray);
+    ingredientListArea.innerHTML = "";
+    displayIngredientsList(recipesArray);
+    appliancesListArea.innerHTML = "";
+    displayAppliancesList(recipesArray);
+    ustensilsListArea.innerHTML = "";
+    displayUstensilsList(recipesArray);
+    
+    displayRecipesByTags();
+}
+
 // Fonction qui crée un tableau selon le mot-clé séléctionné et une base de donnée fournis
 function getArray(id, array){
-    let newRecipesArrayByIngredient = getArrayByIngredients(id, array); 
-    let newRecipesArrayByAppliances = getArrayByAppliance(id, array);
-    let newRecipesArrayByUstensils = getArrayByUstensils(id, array);
-    let newRecipesArrayByName = getArrayByTitle(id, array);
-    let newRecipesArrayByDescription = getArrayByDescription(id, array);
+    id = id.toLowerCase();
+    let newRecipesOfAllArray = [...getArrayByIngredients(id, array),...getArrayByAppliance(id, array),
+        ...getArrayByUstensils(id, array),...getArrayByTitle(id, array),...getArrayByDescription(id, array)];
 
-    let newRecipesOfAllArray = [...newRecipesArrayByName,...newRecipesArrayByIngredient,
-        ...newRecipesArrayByDescription,...newRecipesArrayByAppliances,...newRecipesArrayByUstensils];
-
-    let newRecipesArray = newRecipesOfAllArray.filter((ele, pos) => newRecipesOfAllArray.indexOf(ele) == pos);
+    let newRecipesArray = [...new Set(newRecipesOfAllArray)];
 
     return newRecipesArray;
 }
@@ -119,19 +129,10 @@ function getArray(id, array){
 // à un mot clés préalablement séléctionné
 function displayRecipesByIdWithRecipeData(id){ 
     let newRecipesArray = getArray(id, recipes);
-    funnelArray = newRecipesArray;
+    funnelArray = [...newRecipesArray];
     let newArray = funnelArray;
     
-    recipesSection.innerHTML = "";            
-    displayRecipesCard(newArray);
-    ingredientListArea.innerHTML = "";
-    displayIngredientsList(newArray);
-    appliancesListArea.innerHTML = "";
-    displayAppliancesList(newArray);
-    ustensilsListArea.innerHTML = "";
-    displayUstensilsList(newArray);
-    
-    displayrecipesByTags();
+    getAllDisplayRecipes(newArray);
     
 }
 
@@ -139,26 +140,17 @@ function displayRecipesByIdWithRecipeData(id){
 //  par rapport à un mot clés préalablement séléctionné
 function displayRecipesByIdWithRestData(id){    
     let newRecipesArray = getArray(id, funnelArray);
-    funnelArray = newRecipesArray;
-    let newTagsData = funnelArray.filter((ele, pos) => funnelArray.indexOf(ele) == pos);  
+    funnelArray = [...newRecipesArray];
+    let newTagsData = [...new Set(funnelArray)];  
 
-    recipesSection.innerHTML = "";            
-    displayRecipesCard(newTagsData);
-    ingredientListArea.innerHTML = "";
-    displayIngredientsList(newTagsData);
-    appliancesListArea.innerHTML = "";
-    displayAppliancesList(newTagsData);
-    ustensilsListArea.innerHTML = "";
-    displayUstensilsList(newTagsData);
-
-    displayrecipesByTags();
+    getAllDisplayRecipes(newTagsData);
     
 }
 
 // Fonction qui écoute tous les mot-clés de chaque liste
 // applique une fonction selon si le tableau tagsArray possède une valeur ou non
 // puis affiche le tags selectionné 
-export function displayrecipesByTags(){      
+export function displayRecipesByTags(){      
     let allItemsInListArea = document.querySelectorAll(".list-area_items"); 
 
     allItemsInListArea.forEach(element => {
@@ -167,25 +159,19 @@ export function displayrecipesByTags(){
 
             let id = element.textContent;
             let tagById = document.getElementById(id);
-            tagById.style.display = "flex"; 
-            console.log(tagsArray.length)
+            tagById.style.display = "flex";
 
             if(tagsArray.length === 0){
-
-                console.log(tagsArray.length)
                 displayRecipesByIdWithRecipeData(id);               
                 tagsArray.push(id);
                 let newTagsArray = [...new Set(tagsArray)];
                 tagsArray = newTagsArray;
-                console.log(tagsArray)
 
             } else if(tagsArray.length > 0){
-                console.log(tagsArray.length)
                 displayRecipesByIdWithRestData(id);
                 tagsArray.push(id);
                 let newTagsArray = [...new Set(tagsArray)];
                 tagsArray = newTagsArray;
-                console.log(tagsArray)
             }
         })
     })
@@ -216,32 +202,17 @@ function closeTags(){
             tagsArray.forEach(element => {
                 newArrayOfTagsData = getArray(element, recipes)
             })
+            console.log(newArrayOfTagsData)
             
             element.parentElement.style.display = "none";
 
             if(tagsArray.length === 0){
 
-                recipesSection.innerHTML = "";            
-                displayRecipesCard(recipes);
-                ingredientListArea.innerHTML = "";
-                displayIngredientsList(recipes);
-                appliancesListArea.innerHTML = "";
-                displayAppliancesList(recipes);
-                ustensilsListArea.innerHTML = "";
-                displayUstensilsList(recipes);    
-                displayrecipesByTags();  
+                getAllDisplayRecipes(recipes); 
                 
             }else if(tagsArray.length > 0){
 
-                recipesSection.innerHTML = "";            
-                displayRecipesCard(newArrayOfTagsData);
-                ingredientListArea.innerHTML = "";
-                displayIngredientsList(newArrayOfTagsData);
-                appliancesListArea.innerHTML = "";
-                displayAppliancesList(newArrayOfTagsData);
-                ustensilsListArea.innerHTML = "";
-                displayUstensilsList(newArrayOfTagsData);    
-                displayrecipesByTags();
+                getAllDisplayRecipes(newArrayOfTagsData);
                 
             }
         })
@@ -250,4 +221,4 @@ function closeTags(){
 }
 
 closeTags();
-displayrecipesByTags();
+displayRecipesByTags();
