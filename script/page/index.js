@@ -15,6 +15,7 @@ export function getArrayIngredientsList(data){
     data.forEach(element => {
         const dataIngredients = element.ingredients;        
         dataIngredients.forEach(element => {
+            element.ingredient = element.ingredient.toUpperCase().slice(0,1) + element.ingredient.toLowerCase().slice(1);
             allIngredientsArray.push(element.ingredient);  
         })
     })
@@ -35,7 +36,8 @@ export function displayIngredientsList(data){
 }
 export function getArrayApplianceList(data){
     let allApplianceArray = [];
-    data.forEach(element => {
+    data.forEach(element => {        
+        element.appliance  = element.appliance.toUpperCase().slice(0,1) + element.appliance.toLowerCase().slice(1);
         allApplianceArray.push(element.appliance);  
     })
     let appliancesList = [...new Set(allApplianceArray.sort())];
@@ -58,6 +60,7 @@ export function getArrayUstensilList(data){
     data.forEach(element => {
         const dataUstensils = element.ustensils;        
         dataUstensils.forEach(element => {
+            element = element.toUpperCase().slice(0,1) + element.toLowerCase().slice(1);
             allUstensilsArray.push(element);  
         })
     })
