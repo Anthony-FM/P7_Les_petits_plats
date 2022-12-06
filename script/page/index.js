@@ -18,8 +18,8 @@ export function getArrayIngredientsList(data){
             allIngredientsArray.push(element.ingredient);  
         })
     })
-    allIngredientsArray.sort();
-    return allIngredientsArray.filter((ele, pos) => allIngredientsArray.indexOf(ele) == pos)
+    let ingredientsList = [...new Set(allIngredientsArray.sort())];
+    return ingredientsList;
 }
 
 export function displayIngredientsList(data){
@@ -38,8 +38,8 @@ export function getArrayApplianceList(data){
     data.forEach(element => {
         allApplianceArray.push(element.appliance);  
     })
-    allApplianceArray.sort();
-    return allApplianceArray.filter((a, b) => allApplianceArray.indexOf(a) == b);
+    let appliancesList = [...new Set(allApplianceArray.sort())];
+    return appliancesList;
 }
 
 export function displayAppliancesList(data){
@@ -61,8 +61,8 @@ export function getArrayUstensilList(data){
             allUstensilsArray.push(element);  
         })
     })
-    allUstensilsArray.sort();
-    return allUstensilsArray.filter((x, y) => allUstensilsArray.indexOf(x) == y);
+    let ustensilsList = [...new Set(allUstensilsArray.sort())];
+    return ustensilsList;
 }
 
 export function displayUstensilsList(data){
@@ -76,33 +76,12 @@ export function displayUstensilsList(data){
     }) 
 }
 
-export function getAllList(data){    
-    let arrayOfAllItems = [getArrayIngredientsList(data)
-        .concat(getArrayApplianceList(data)).concat(getArrayUstensilList(data))];
-    return arrayOfAllItems;
-}
-
-export function displayAllList(data){    
-    const searchListArea = document.querySelector(".recipes-search-list");    
-    data.forEach(array => {
-        array.forEach(element => {
-            let item = document.createElement( "p" );
-            item.className = "recipes-search-list_item";
-            item.textContent = element;
-            searchListArea.appendChild(item);
-
-        })
-    })
-}
-
 function init(){
     let data = recipes;
     displayRecipesCard(data);
     displayIngredientsList(data);
     displayAppliancesList(data);
     displayUstensilsList(data);
-    let listData = getAllList(data);
-    displayAllList(listData);
 }
 
 init();
