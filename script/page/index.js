@@ -18,6 +18,7 @@ export function getArrayIngredientsList(data){
             allIngredientsArray.push(element.ingredient);  
         })
     })
+    allIngredientsArray.sort();
     return allIngredientsArray.filter((ele, pos) => allIngredientsArray.indexOf(ele) == pos)
 }
 
@@ -37,6 +38,7 @@ export function getArrayApplianceList(data){
     data.forEach(element => {
         allApplianceArray.push(element.appliance);  
     })
+    allApplianceArray.sort();
     return allApplianceArray.filter((a, b) => allApplianceArray.indexOf(a) == b);
 }
 
@@ -59,6 +61,7 @@ export function getArrayUstensilList(data){
             allUstensilsArray.push(element);  
         })
     })
+    allUstensilsArray.sort();
     return allUstensilsArray.filter((x, y) => allUstensilsArray.indexOf(x) == y);
 }
 
@@ -79,7 +82,7 @@ export function getAllList(data){
     return arrayOfAllItems;
 }
 
-export function displayAllList(data){
+export function displayAllList(data){    
     const searchListArea = document.querySelector(".recipes-search-list");    
     data.forEach(array => {
         array.forEach(element => {
