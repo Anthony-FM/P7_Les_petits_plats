@@ -1,5 +1,7 @@
 import { recipes } from '../../data/recipesData.js';
 
+// *** Recettes ***
+// Fonction qui crée les cartes des recettes
 export function displayRecipesCard(data){    
     const recipesSection = document.querySelector(".recipes-galery");
     data.forEach(element => {        
@@ -10,6 +12,8 @@ export function displayRecipesCard(data){
     });
 }
 
+// *** Ingrédients ***
+// Fonction qui crée un tableau et récupère toute la liste d'ingrédients
 export function getArrayIngredientsList(data){
     let allIngredientsArray = [];
     data.forEach(element => {
@@ -22,7 +26,7 @@ export function getArrayIngredientsList(data){
     let ingredientsList = [...new Set(allIngredientsArray.sort())];
     return ingredientsList;
 }
-
+// Fonction qui génère la liste d'ingrédients dans la zone "Ingrédients"
 export function displayIngredientsList(data){
     const ingredientListArea = document.querySelector(".list-search.primary + .list-area");
     let newArrayIngredientsList = getArrayIngredientsList(data);
@@ -34,6 +38,9 @@ export function displayIngredientsList(data){
     })    
 
 }
+
+// *** Appareils ***
+// Fonction qui crée un tableau et récupère toute la liste d'appareils
 export function getArrayApplianceList(data){
     let allApplianceArray = [];
     data.forEach(element => {        
@@ -43,7 +50,7 @@ export function getArrayApplianceList(data){
     let appliancesList = [...new Set(allApplianceArray.sort())];
     return appliancesList;
 }
-
+// Fonction qui génère la liste d'appareils dans la zone "Appareils"
 export function displayAppliancesList(data){
     const appliancesListArea = document.querySelector(".list-search.secondary + .list-area");
     let newArrayAppliance = getArrayApplianceList(data);
@@ -55,6 +62,8 @@ export function displayAppliancesList(data){
     })    
 }
 
+// *** Ustensiles ***
+// Fonction qui crée un tableau et récupère toute la liste d'ustensiles
 export function getArrayUstensilList(data){    
     let allUstensilsArray = [];
     data.forEach(element => {
@@ -67,7 +76,7 @@ export function getArrayUstensilList(data){
     let ustensilsList = [...new Set(allUstensilsArray.sort())];
     return ustensilsList;
 }
-
+// Fonction qui génère la liste d'ustensiles dans la zone "Ustensils"
 export function displayUstensilsList(data){
     const ustensilsListArea = document.querySelector(".list-search.tertiary + .list-area");
     let newArrayUstensils = getArrayUstensilList(data)

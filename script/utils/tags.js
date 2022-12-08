@@ -1,25 +1,19 @@
 import { recipes } from '../../data/recipesData.js';
 import { getArrayIngredientsList, getArrayApplianceList, getArrayUstensilList } from '../page/index.js';
-import { displayRecipesCard, displayIngredientsList, displayAppliancesList, displayUstensilsList } from '../page/index.js';
+import { getAllDisplayRecipesItems } from '../utils/searchInput.js';
 import { getArrayByTitle, getArrayByIngredients, getArrayByDescription, getArrayByAppliance, getArrayByUstensils } from '../utils/algorithmes.js';
 
-
 // ****** Variables ******
-// Mes Variables Ingrédients Appareils et Ustensils
-let ingredientListArea = document.querySelector(".list-search.primary + .list-area");
-let appliancesListArea = document.querySelector(".list-search.secondary + .list-area");
-let ustensilsListArea = document.querySelector(".list-search.tertiary + .list-area");
 
 // Mes Tableaux
 let tagsArray = [];
 let funnelArray = [];
 
-// Les zones des Recettes et des Tags
+// Les zones des Tags
 const tagsArea = document.querySelector(".container-tags");
-const recipesSection = document.querySelector(".recipes-galery");
 
 // ***** Création des Tags *****
-
+// Création des tags selon la liste des ingrédients 
 function displayDataIngredientsTags(){    
 
     let dataTags =  getArrayIngredientsList(recipes);
@@ -44,7 +38,7 @@ function displayDataIngredientsTags(){
         tagsArea.appendChild(tagsContainer);        
     });
 }
-
+// Création des tags selon la liste des d'appareils 
 function displayDataApliancesTags(){
     let dataTags =  getArrayApplianceList(recipes);
 
@@ -68,7 +62,7 @@ function displayDataApliancesTags(){
         tagsArea.appendChild(tagsContainer);        
     });
 }
-
+// Création des tags selon la liste des ustensiles
 function displayDataUstensilsTags(){    
 
     let dataTags =  getArrayUstensilList(recipes);
@@ -99,21 +93,6 @@ displayDataIngredientsTags();
 displayDataApliancesTags();
 displayDataUstensilsTags();
 
-// Fonction qui efface et regénère les cartes recette 
-// et les listes (ingrédients, appareiles et ustensiles)
-function getAllDisplayRecipes(recipesArray){
-    recipesSection.innerHTML = "";            
-    displayRecipesCard(recipesArray);
-    ingredientListArea.innerHTML = "";
-    displayIngredientsList(recipesArray);
-    appliancesListArea.innerHTML = "";
-    displayAppliancesList(recipesArray);
-    ustensilsListArea.innerHTML = "";
-    displayUstensilsList(recipesArray);
-    
-    displayRecipesByTags();
-}
-
 // Fonction qui crée un tableau selon le mot-clé séléctionné et une base de donnée fournis
 function getArray(id, array){
     id = id.toLowerCase();
@@ -127,23 +106,23 @@ function getArray(id, array){
 
 // Fonction qui génère les recettes selon la base de donnée Recipes par rapport
 // à un mot clés préalablement séléctionné
-function displayRecipesByIdWithRecipeData(id){ 
+export function displayRecipesByIdWithRecipeData(id){ 
     let newRecipesArray = getArray(id, recipes);
     funnelArray = [...newRecipesArray];
     let newArray = funnelArray;
     
-    getAllDisplayRecipes(newArray);
+    getAllDisplayRecipesItems(newArray);
     
 }
 
 // Fonction qui génère les recettes selon la base de donnée restante de => Recipes
 //  par rapport à un mot clés préalablement séléctionné
-function displayRecipesByIdWithRestData(id){    
+export function displayRecipesByIdWithRestData(id){    
     let newRecipesArray = getArray(id, funnelArray);
     funnelArray = [...newRecipesArray];
     let newTagsData = [...new Set(funnelArray)];  
 
-    getAllDisplayRecipes(newTagsData);
+    getAllDisplayRecipesItems(newTagsData);
     
 }
 
@@ -176,7 +155,7 @@ export function displayRecipesByTags(){
         })
     })
 }
-
+// Fonction qui supprime un mot-clé du tableau tagsArray
 function deleteWordInTagsArray(word){
     let indexOfId = tagsArray.indexOf(word);
     if(indexOfId > -1){
@@ -194,9 +173,9 @@ function closeTags(){
         element.addEventListener("click", () => {
 
             // Récupération de l'id de l'élement parent 
-            let id = element.parentElement.id;
-            // Recherche de l'id dans le tableau tagsArray
-            deleteWordInTagsArray(id);            
+            let keyWord = element.parentElement.id;
+            // Suppression du mot-clé dans le tableau tagsArray
+            deleteWordInTagsArray(keyWord);            
 
             let newArrayOfTagsData = [];
             tagsArray.forEach(element => {
@@ -208,11 +187,11 @@ function closeTags(){
 
             if(tagsArray.length === 0){
 
-                getAllDisplayRecipes(recipes); 
+                getAllDisplayRecipesItems(recipes); 
                 
             }else if(tagsArray.length > 0){
 
-                getAllDisplayRecipes(newArrayOfTagsData);
+                getAllDisplayRecipesItems(newArrayOfTagsData);
                 
             }
         })
