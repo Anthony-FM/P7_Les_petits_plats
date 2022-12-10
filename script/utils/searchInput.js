@@ -1,6 +1,6 @@
 import { recipes } from '../../data/recipesData.js';
-import { displayRecipesCard, displayIngredientsList, displayAppliancesList, displayUstensilsList } from '../page/index.js';
-import { getArrayByTitle, getArrayByIngredients, getArrayByDescription, getArrayByAppliance, getArrayByUstensils } from '../utils/algorithmes.js';
+import { displayRecipesCard, displayIngredientsList, displayAppliancesList, displayUstensilsList, getArrayIngredientsList, getArrayApplianceList, getArrayUstensilList } from '../page/index.js';
+import { getArrayByTitle, getArrayByIngredients, getArrayByDescription } from '../utils/algorithmes.js';
 import { displayRecipesByTags } from '../utils/tags.js';
 
 // *** Mes Variables ***
