@@ -1,6 +1,6 @@
 import { recipes } from '../../data/recipesData.js';
-import { displayRecipesCard, displayIngredientsList, displayAppliancesList, displayUstensilsList } from '../page/index.js';
-import { getArrayByTitle, getArrayByIngredients, getArrayByDescription, getArrayByAppliance, getArrayByUstensils } from '../utils/algorithmes.js';
+import { displayRecipesCard, displayIngredientsList, displayAppliancesList, displayUstensilsList, getArrayIngredientsList, getArrayApplianceList, getArrayUstensilList } from '../page/index.js';
+import { getArrayByTitle, getArrayByIngredients, getArrayByDescription } from '../utils/algorithmes.js';
 import { displayRecipesByTags } from '../utils/tags.js';
 
 // *** Mes Variables ***
@@ -30,19 +30,35 @@ export function getAllDisplayRecipesItems(recipesArray){
     displayRecipesByTags();
 }
 
-// Fonction qui efface et regénère 
-// les listes (ingrédients, appareiles et ustensiles)
-function getAllObjectDisplayItems(recipesArray){
-    
-    ingredientListArea.innerHTML = "";
-    displayIngredientsList(recipesArray);
-    applianceListArea.innerHTML = "";
-    displayAppliancesList(recipesArray);
-    ustensilsListArea.innerHTML = "";
-    displayUstensilsList(recipesArray);
-    
-    displayRecipesByTags();
-}
+// *** Fonction qui génère une nouvelle liste (Ingrédient, Appareils ou Ustensiles) ***
+// *** Grâce à un nouveau tableau ***
+function displayIngredientsListByValue(data){
+    data.forEach(element => {
+         let item = document.createElement( "p" );
+         item.className = "list-area_items";
+         item.textContent = element;
+         ingredientListArea.appendChild(item)        
+     }) 
+     displayRecipesByTags();
+ }
+ function displayAppliancesListByValue(data){
+    data.forEach(element => {
+         let item = document.createElement( "p" );
+         item.className = "list-area_items";
+         item.textContent = element;
+         applianceListArea.appendChild(item)        
+     }) 
+     displayRecipesByTags();
+ }
+ function displayUstensilsListByValue(data){
+    data.forEach(element => {
+         let item = document.createElement( "p" );
+         item.className = "list-area_items";
+         item.textContent = element;
+         ustensilsListArea.appendChild(item)        
+     }) 
+     displayRecipesByTags();
+ }
 
 // Fonction qui écoute ce que l'utilisateur rentre dans la barre de recherche principale
 // et genère les cartes recettes et les listes (ingrédients, appareiles et ustensiles)
@@ -72,36 +88,6 @@ function searchRecipes(){
 }
 
 searchRecipes();
-
-// *** Fonction qui génère une nouvelle liste (Ingrédient, Appareils ou Ustensiles) ***
-// *** Grâce à un nouveau tableau ***
-function displayIngredientsListByValue(data){
-   data.forEach(element => {
-        let item = document.createElement( "p" );
-        item.className = "list-area_items";
-        item.textContent = element;
-        ingredientListArea.appendChild(item)        
-    }) 
-    displayRecipesByTags();
-}
-function displayAppliancesListByValue(data){
-   data.forEach(element => {
-        let item = document.createElement( "p" );
-        item.className = "list-area_items";
-        item.textContent = element;
-        applianceListArea.appendChild(item)        
-    }) 
-    displayRecipesByTags();
-}
-function displayUstensilsListByValue(data){
-   data.forEach(element => {
-        let item = document.createElement( "p" );
-        item.className = "list-area_items";
-        item.textContent = element;
-        ustensilsListArea.appendChild(item)        
-    }) 
-    displayRecipesByTags();
-}
 
 // Fonction qui écoute ce que l'utilisateur rentre dans la barre de recherche des ingrédients
 // et genère une nouvelle liste 
