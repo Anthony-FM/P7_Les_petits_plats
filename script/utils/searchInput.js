@@ -1,7 +1,7 @@
 import { recipes } from '../../data/recipesData.js';
 import { displayRecipesCard, displayIngredientsList, displayAppliancesList, displayUstensilsList } from '../page/index.js';
 import { getArrayByTitle, getArrayByIngredients, getArrayByDescription, getArrayByAppliance, getArrayByUstensils } from '../utils/algorithmes.js';
-import { displayRecipesByTags, displayRecipesByIdWithRestData } from '../utils/tags.js';
+import { displayRecipesByTags } from '../utils/tags.js';
 
 // *** Mes Variables ***
 const searchInput = document.getElementById("searchRecipes");
@@ -73,6 +73,36 @@ function searchRecipes(){
 
 searchRecipes();
 
+// *** Fonction qui génère une nouvelle liste (Ingrédient, Appareils ou Ustensiles) ***
+// *** Grâce à un nouveau tableau ***
+function displayIngredientsListByValue(data){
+   data.forEach(element => {
+        let item = document.createElement( "p" );
+        item.className = "list-area_items";
+        item.textContent = element;
+        ingredientListArea.appendChild(item)        
+    }) 
+    displayRecipesByTags();
+}
+function displayAppliancesListByValue(data){
+   data.forEach(element => {
+        let item = document.createElement( "p" );
+        item.className = "list-area_items";
+        item.textContent = element;
+        applianceListArea.appendChild(item)        
+    }) 
+    displayRecipesByTags();
+}
+function displayUstensilsListByValue(data){
+   data.forEach(element => {
+        let item = document.createElement( "p" );
+        item.className = "list-area_items";
+        item.textContent = element;
+        ustensilsListArea.appendChild(item)        
+    }) 
+    displayRecipesByTags();
+}
+
 // Fonction qui écoute ce que l'utilisateur rentre dans la barre de recherche des ingrédients
 // et genère une nouvelle liste 
 function searchIngredientInput(){ 
@@ -85,11 +115,11 @@ function searchIngredientInput(){
             displayRecipesByTags();
             
         } else if(value.length > 0){
-            let newRecipesArrayByIngredients = getArrayByIngredients(value, recipes); 
-            // On tri les tableaux pour qu'il n'y ai pas de doublon
-            let newRecipesArray = [...new Set(newRecipesArrayByIngredients)];
+            let newRecipesArrayByIngredients = getArrayIngredientsList(recipes); 
+            ingredientListArea.innerHTML= "";
+            let newArrayIngredientsList = newRecipesArrayByIngredients.filter( el => el.toLowerCase().includes(value))
+            displayIngredientsListByValue(newArrayIngredientsList);            
         
-            getAllObjectDisplayItems(newRecipesArray);
         }
         
     })
@@ -105,11 +135,10 @@ function searchApplianceInput(){
             displayRecipesByTags();
 
         } else if(value.length > 0){
-            let newRecipesArrayByAppliances = getArrayByAppliance(value, recipes); 
-            // On tri les tableaux pour qu'il n'y ai pas de doublon
-            let newRecipesArray = [...new Set(newRecipesArrayByAppliances)];
-    
-            getAllObjectDisplayItems(newRecipesArray);
+            let newRecipesArrayByAppliances = getArrayApplianceList(recipes); 
+            applianceListArea.innerHTML= "";
+            let newArrayAppliancesList = newRecipesArrayByAppliances.filter( el => el.toLowerCase().includes(value))
+            displayAppliancesListByValue(newArrayAppliancesList);
         }
     })
 }
@@ -124,11 +153,10 @@ function searchUstensilsInput(){
             displayUstensilsList(recipes);
             displayRecipesByTags();
         } else if(value.length > 0){    
-            let newRecipesArrayByUstensils = getArrayByUstensils(value, recipes); 
-            // On tri les tableaux pour qu'il n'y ai pas de doublon            
-            let newRecipesArray = [...new Set(newRecipesArrayByUstensils)];
-    
-            getAllObjectDisplayItems(newRecipesArray);
+            let newRecipesArrayByUstensils = getArrayUstensilList(recipes); 
+            ustensilsListArea.innerHTML= "";
+            let newArrayUstensilsList = newRecipesArrayByUstensils.filter( el => el.toLowerCase().includes(value))
+            displayUstensilsListByValue(newArrayUstensilsList);
         }
     })
 }
@@ -136,4 +164,3 @@ function searchUstensilsInput(){
 searchIngredientInput();
 searchApplianceInput();
 searchUstensilsInput();
-
