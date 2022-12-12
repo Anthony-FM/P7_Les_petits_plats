@@ -4,7 +4,7 @@ function recipesFactory(data){
     function getRecipesCard(){
         const card = document.createElement( "div" );
         card.className = "card";
-        card.classList = "col-12 col-md-6 col-lg-4 mb-3 recipes-card"
+        card.classList = "col-12 col-md-6 col-lg-4 mb-5 recipes-card"
 
         const bgDiv = document.createElement( "div" );
         bgDiv.className = "recipes-card_bg";
