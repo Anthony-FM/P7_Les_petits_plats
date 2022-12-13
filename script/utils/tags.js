@@ -97,8 +97,8 @@ function getArray(id, array){
     id = id.toLowerCase();
     let newRecipesArray = array.filter(array => array.name.toLowerCase().includes(id) ||  
             array.ingredients.find(ingredients => ingredients.ingredient.toLowerCase().includes(id)) || 
-            array.description.toLowerCase().includes(id) || data.appliance.toLowerCase().includes(id) ||
-            data.ustensils.find(element => element.toLowerCase().includes(id))); 
+            array.description.toLowerCase().includes(id) || array.appliance.toLowerCase().includes(id) ||
+           array.ustensils.find(element => element.toLowerCase().includes(id))); 
 
     return newRecipesArray;
 }
