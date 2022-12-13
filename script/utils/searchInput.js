@@ -68,8 +68,9 @@ function searchRecipes(){
         let value = e.target.value.toLowerCase();
 
         if(value.length > 2){                
-            let newRecipesArray = getArrayByTitle(value, recipes) || getArrayByIngredients(value, recipes)
-            || getArrayByDescription(value, recipes);
+            let newRecipesArray = recipes.filter(recipe => recipe.name.toLowerCase().includes(value) ||  
+            recipe.ingredients.find(ingredients => ingredients.ingredient.toLowerCase().includes(value)) || 
+            recipe.description.toLowerCase().includes(value));            
             
             if(newRecipesArray.length == 0){  
                 getAllDisplayRecipesItems(newRecipesArray);
