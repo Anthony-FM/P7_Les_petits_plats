@@ -1,7 +1,6 @@
 import { recipes } from '../../data/recipesData.js';
 import { getArrayIngredientsList, getArrayApplianceList, getArrayUstensilList } from '../page/index.js';
 import { getAllDisplayRecipesItems } from '../utils/searchInput.js';
-import { getArrayByTitle, getArrayByIngredients, getArrayByDescription, getArrayByAppliance, getArrayByUstensils } from '../utils/algorithmes.js';
 
 // ****** Variables ******
 
@@ -96,10 +95,30 @@ displayDataUstensilsTags();
 // Fonction qui crée un tableau selon le mot-clé séléctionné et une base de donnée fournis
 function getArray(id, array){
     id = id.toLowerCase();
-    let newRecipesOfAllArray = [...getArrayByIngredients(id, array),...getArrayByAppliance(id, array),
-        ...getArrayByUstensils(id, array),...getArrayByTitle(id, array),...getArrayByDescription(id, array)];
 
-    let newRecipesArray = [...new Set(newRecipesOfAllArray)];
+    // *** Algorithme Boucle for() ***
+    let newRecipesArray = [];
+    for(let i = 0; i < array.length; i++){
+        let includesInName = array[i].name.toLowerCase().includes(id);
+        let includesInDescription = array[i].description.toLowerCase().includes(id);
+        let includesInAppliance = array[i].appliance.toLowerCase().includes(id);
+        let includeInIngredient = false;
+        for(let j = 0; j < array[i].ingredients.length; j++){
+            if(array[i].ingredients[j].ingredient.toLowerCase().includes(id)){
+                includeInIngredient = true;
+            }
+        }
+        let includeInUstensil = false;
+        for(let j = 0; j < array[i].ustensils.length; j++){
+            if(array[i].ustensils[j].toLowerCase().includes(id)){
+                includeInUstensil = true;
+            }
+        }
+        
+        if(includesInName || includesInDescription || includesInAppliance || includeInIngredient || includeInUstensil){
+            newRecipesArray.push(array[i]);
+        }
+    } 
 
     return newRecipesArray;
 }

@@ -1,6 +1,5 @@
 import { recipes } from '../../data/recipesData.js';
 import { displayRecipesCard, displayIngredientsList, displayAppliancesList, displayUstensilsList, getArrayIngredientsList, getArrayApplianceList, getArrayUstensilList } from '../page/index.js';
-import { getArrayByTitle, getArrayByIngredients, getArrayByDescription } from '../utils/algorithmes.js';
 import { displayRecipesByTags } from '../utils/tags.js';
 
 // *** Mes Variables ***
@@ -51,9 +50,23 @@ function searchRecipes(){
     searchInput.addEventListener("input", (e) => {
         let value = e.target.value.toLowerCase();
 
-        if(value.length > 2){                
-            let newRecipesArray = getArrayByTitle(value, recipes) || getArrayByIngredients(value, recipes)
-            || getArrayByDescription(value, recipes);
+        if(value.length > 2){     
+            
+            // *** Algorithme Boucle for() ***
+            let newRecipesArray = [];
+            for(let i = 0; i < recipes.length; i++){
+                let includesInName = recipes[i].name.toLowerCase().includes(value);
+                let includesInDescription = recipes[i].description.toLowerCase().includes(value);
+                let includeInIngredient = false;
+                for(let j = 0; j < recipes[i].ingredients.length; j++){
+                    if(recipes[i].ingredients[j].ingredient.toLowerCase().includes(value)){
+                        includeInIngredient = true;
+                    }
+                }
+                if(includesInName || includesInDescription || includeInIngredient){
+                    newRecipesArray.push(recipes[i]);
+                }
+            }
             
             if(newRecipesArray.length == 0){  
                 getAllDisplayRecipesItems(newRecipesArray);
