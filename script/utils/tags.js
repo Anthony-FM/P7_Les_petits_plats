@@ -1,7 +1,6 @@
 import { recipes } from '../../data/recipesData.js';
 import { getArrayIngredientsList, getArrayApplianceList, getArrayUstensilList } from '../page/index.js';
 import { getAllDisplayRecipesItems } from '../utils/searchInput.js';
-import { getArrayByTitle, getArrayByIngredients, getArrayByDescription, getArrayByAppliance, getArrayByUstensils } from '../utils/algorithmes.js';
 
 // ****** Variables ******
 
@@ -96,10 +95,10 @@ displayDataUstensilsTags();
 // Fonction qui crée un tableau selon le mot-clé séléctionné et une base de donnée fournis
 function getArray(id, array){
     id = id.toLowerCase();
-    let newRecipesOfAllArray = [...getArrayByIngredients(id, array),...getArrayByAppliance(id, array),
-        ...getArrayByUstensils(id, array),...getArrayByTitle(id, array),...getArrayByDescription(id, array)];
-
-    let newRecipesArray = [...new Set(newRecipesOfAllArray)];
+    let newRecipesArray = array.filter(array => array.name.toLowerCase().includes(id) ||  
+            array.ingredients.find(ingredients => ingredients.ingredient.toLowerCase().includes(id)) || 
+            array.description.toLowerCase().includes(id) || data.appliance.toLowerCase().includes(id) ||
+            data.ustensils.find(element => element.toLowerCase().includes(id))); 
 
     return newRecipesArray;
 }
