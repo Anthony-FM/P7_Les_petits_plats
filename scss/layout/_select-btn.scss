@@ -4,6 +4,9 @@
 
 .select-container{
     position: relative;
+    @include tablette{
+        width: 100%;
+    }
 }
 
 .select-btn {
@@ -15,6 +18,10 @@
     border-radius: 5px;
     padding: 23px 15px;
     cursor: pointer;
+    @include tablette{
+        width: 100%;
+    }
+    
     &_title{
         font-family: $texte;
         font-weight: 700;
@@ -80,6 +87,7 @@
     border-radius: 5px;
     padding: 15px;
 
+
     &_input{
         width: 100%;
         margin: 1em;
@@ -106,7 +114,16 @@
     border-radius: 5px;
     position: absolute;
     top: 76px;
-    width: 667px;
+    width: 100%;
+    z-index: 999;
+    @include tablette{
+        grid-template-columns: 1fr 1fr;
+        width: 100%;
+    }
+    @include phone{
+        grid-template-columns:  1fr 1fr;
+        width: 100%;
+    }
     &_items{
         color: $color-white;
         font-family: $texte;
@@ -121,4 +138,7 @@
 .list-container{    
     display: none;
     width: 667px;
+    @include tablette{
+        width: 100%;
+    }
 }

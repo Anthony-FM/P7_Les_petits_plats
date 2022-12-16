@@ -7,3 +7,15 @@
     text-overflow: ellipsis;
     overflow: hidden;
 }
+
+@mixin tablette {
+    @media screen and (max-width: 768px) {
+        @content;
+    }
+}
+
+@mixin phone {
+    @media screen and (max-width: 500px) {
+        @content;
+    }
+}

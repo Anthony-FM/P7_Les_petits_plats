@@ -29,19 +29,6 @@ export function getAllDisplayRecipesItems(recipesArray){
     displayRecipesByTags();
 }
 
-// Fonction qui efface et regénère 
-// les listes (ingrédients, appareiles et ustensiles)
-function getAllObjectDisplayItems(recipesArray){
-    
-    ingredientListArea.innerHTML = "";
-    displayIngredientsList(recipesArray);
-    applianceListArea.innerHTML = "";
-    displayAppliancesList(recipesArray);
-    ustensilsListArea.innerHTML = "";
-    displayUstensilsList(recipesArray);
-    
-    displayRecipesByTags();
-}
 
 // Fonction qui écoute ce que l'utilisateur rentre dans la barre de recherche principale
 // et genère les cartes recettes et les listes (ingrédients, appareiles et ustensiles)
