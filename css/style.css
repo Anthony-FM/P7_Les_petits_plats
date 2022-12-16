@@ -10899,6 +10899,11 @@ h1, .h1 {
 .select-container {
   position: relative;
 }
+@media screen and (max-width: 768px) {
+  .select-container {
+    width: 100%;
+  }
+}
 
 .select-btn {
   display: flex;
@@ -10909,6 +10914,11 @@ h1, .h1 {
   border-radius: 5px;
   padding: 23px 15px;
   cursor: pointer;
+}
+@media screen and (max-width: 768px) {
+  .select-btn {
+    width: 100%;
+  }
 }
 .select-btn_title {
   font-family: "Lato", sans-serif;
@@ -11001,7 +11011,20 @@ h1, .h1 {
   border-radius: 5px;
   position: absolute;
   top: 76px;
-  width: 667px;
+  width: 100%;
+  z-index: 999;
+}
+@media screen and (max-width: 768px) {
+  .list-area {
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+  }
+}
+@media screen and (max-width: 500px) {
+  .list-area {
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+  }
 }
 .list-area_items {
   color: #FFFFFF;
@@ -11016,6 +11039,11 @@ h1, .h1 {
 .list-container {
   display: none;
   width: 667px;
+}
+@media screen and (max-width: 768px) {
+  .list-container {
+    width: 100%;
+  }
 }
 
 .no-recipes {
