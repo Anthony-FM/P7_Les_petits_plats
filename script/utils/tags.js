@@ -5,8 +5,8 @@ import { getAllDisplayRecipesItems } from '../utils/searchInput.js';
 // ****** Variables ******
 
 // Mes Tableaux
-let tagsArray = [];
-let funnelArray = [];
+export let tagsArray = [];
+export let funnelArray = [];
 
 // Les zones des Tags
 const tagsArea = document.querySelector(".container-tags");

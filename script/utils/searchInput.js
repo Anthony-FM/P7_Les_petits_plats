@@ -1,6 +1,6 @@
 import { recipes } from '../../data/recipesData.js';
 import { displayRecipesCard, displayIngredientsList, displayAppliancesList, displayUstensilsList, getArrayIngredientsList, getArrayApplianceList, getArrayUstensilList } from '../page/index.js';
-import { displayRecipesByTags } from '../utils/tags.js';
+import { displayRecipesByTags, tagsArray, funnelArray } from '../utils/tags.js';
 
 // *** Mes Variables ***
 const searchInput = document.getElementById("searchRecipes");
@@ -38,34 +38,65 @@ function searchRecipes(){
         let value = e.target.value.toLowerCase();
 
         if(value.length > 2){     
-            
-            // *** Algorithme Boucle for() ***
-            let newRecipesArray = [];
-            for(let i = 0; i < recipes.length; i++){
-                let includesInName = recipes[i].name.toLowerCase().includes(value);
-                let includesInDescription = recipes[i].description.toLowerCase().includes(value);
-                let includeInIngredient = false;
-                for(let j = 0; j < recipes[i].ingredients.length; j++){
-                    if(recipes[i].ingredients[j].ingredient.toLowerCase().includes(value)){
-                        includeInIngredient = true;
+            if(tagsArray.length === 0){
+                // *** Algorithme Boucle for() ***
+                let newRecipesArray = [];
+                for(let i = 0; i < recipes.length; i++){
+                    let includesInName = recipes[i].name.toLowerCase().includes(value);
+                    let includesInDescription = recipes[i].description.toLowerCase().includes(value);
+                    let includeInIngredient = false;
+                    for(let j = 0; j < recipes[i].ingredients.length; j++){
+                        if(recipes[i].ingredients[j].ingredient.toLowerCase().includes(value)){
+                            includeInIngredient = true;
+                        }
+                    }
+                    if(includesInName || includesInDescription || includeInIngredient){
+                        newRecipesArray.push(recipes[i]);
                     }
                 }
-                if(includesInName || includesInDescription || includeInIngredient){
-                    newRecipesArray.push(recipes[i]);
+                if(newRecipesArray.length == 0){  
+                    getAllDisplayRecipesItems(newRecipesArray);
+                    recipesSection.innerHTML = `<div class="no-recipes">  « Aucune recette ne correspond à votre critère… vous pouvez
+                    chercher « tarte aux pommes », « poisson », etc.
+                    </div>`;                
+                    
+                } else {
+                    getAllDisplayRecipesItems(newRecipesArray);    
+                } 
+            } else if(tagsArray.length > 0) {
+                console.log(tagsArray)
+                // *** Algorithme Boucle for() ***
+                let newRecipesArray = [];
+                for(let i = 0; i < funnelArray.length; i++){
+                    let includesInName = funnelArray[i].name.toLowerCase().includes(value);
+                    let includesInDescription = funnelArray[i].description.toLowerCase().includes(value);
+                    let includeInIngredient = false;
+                    for(let j = 0; j < funnelArray[i].ingredients.length; j++){
+                        if(funnelArray[i].ingredients[j].ingredient.toLowerCase().includes(value)){
+                            includeInIngredient = true;
+                        }
+                    }
+                    if(includesInName || includesInDescription || includeInIngredient){
+                        newRecipesArray.push(funnelArray[i]);
+                    }
                 }
-            }
-            
-            if(newRecipesArray.length == 0){  
-                getAllDisplayRecipesItems(newRecipesArray);
-                recipesSection.innerHTML = `<div class="no-recipes">  « Aucune recette ne correspond à votre critère… vous pouvez
-                chercher « tarte aux pommes », « poisson », etc.
-                </div>`;                
-                
-            } else {
-                getAllDisplayRecipesItems(newRecipesArray);    
-            }        
+                if(newRecipesArray.length == 0){  
+                    getAllDisplayRecipesItems(newRecipesArray);
+                    recipesSection.innerHTML = `<div class="no-recipes">  « Aucune recette ne correspond à votre critère… vous pouvez
+                    chercher « tarte aux pommes », « poisson », etc.
+                    </div>`;                
+                    
+                } else {
+                    getAllDisplayRecipesItems(newRecipesArray);    
+                } 
+
+            }         
         } else {
-            getAllDisplayRecipesItems(recipes);
+            if(tagsArray.length === 0){
+                getAllDisplayRecipesItems(recipes);
+            } else {
+                getAllDisplayRecipesItems(funnelArray);
+            }
         }
         
     });
